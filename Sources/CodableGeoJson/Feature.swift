@@ -11,8 +11,7 @@ public struct Feature: GeoJSON {
     public static var type = GeoJSONType.feature
     
     let geometry: AnyGeoJSON?
-    let properties: [String:Any]?
-    let propertiesArray: [Any]?
+    let properties: Any?
     
     public enum CodingKeys : CodingKey {
         case geometry, properties
@@ -25,8 +24,17 @@ public struct Feature: GeoJSON {
         
         let anyGeo = try container.decode(AnyGeoJSON.self, forKey: .geometry)
         self.geometry = anyGeo
-        self.properties = try? container.decode([String:Any].self , forKey: .properties)
-        self.propertiesArray = try? container.decode([Any].self , forKey: .properties)
+        if let tempDict = try? container.decode([String:Any].self , forKey: .properties) {
+          self.properties = tempDict
+        } else {
+            if let tempArray = try? container.decode([Any].self , forKey: .properties) {
+                self.properties = tempArray
+            } else {
+                self.properties = nil
+            }
+            
+        }
+        
     }
     /*
      public func encode(to encoder: Encoder) throws {

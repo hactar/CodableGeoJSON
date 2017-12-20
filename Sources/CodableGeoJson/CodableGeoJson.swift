@@ -124,7 +124,7 @@ extension KeyedDecodingContainer {
             } else if let nestedArray = try? decode(Array<Any>.self, forKey: key) {
                 dictionary[key.stringValue] = nestedArray
             } else if try decodeNil(forKey: key) {
-                dictionary[key.stringValue] = true
+                dictionary[key.stringValue] = nil
             }
         }
         return dictionary
