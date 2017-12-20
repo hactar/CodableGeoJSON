@@ -1,8 +1,8 @@
 import XCTest
 import Foundation
-@testable import CodableGeoJson
+@testable import CodableGeoJSON
 
-class CodableGeoJsonTests: XCTestCase {
+class CodableGeoJSONTests: XCTestCase {
     
     
 

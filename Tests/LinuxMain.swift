@@ -1,6 +1,6 @@
 import XCTest
-@testable import CodableGeoJsonTests
+@testable import CodableGeoJSONTests
 
 XCTMain([
-    testCase(CodableGeoJsonTests.allTests),
+    testCase(CodableGeoJSONTests.allTests),
 ])
