@@ -9,9 +9,9 @@ import Foundation
 
 
 public struct Position: Codable {
-    let latitude: Float
-    let longitude: Float
-    let altitude: Float?
+    public let latitude: Float
+    public let longitude: Float
+    public let altitude: Float?
     
     
     private enum CodingKeys : CodingKey {

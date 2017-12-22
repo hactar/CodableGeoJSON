@@ -10,7 +10,7 @@ import Foundation
 
 public struct FeatureCollection: GeoJSON {
     public static var type = GeoJSONType.featureCollection
-    let features: [Feature]
+    public let features: [Feature]
 }
 
 

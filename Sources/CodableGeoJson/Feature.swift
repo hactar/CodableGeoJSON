@@ -10,8 +10,8 @@ import Foundation
 public struct Feature: GeoJSON {
     public static var type = GeoJSONType.feature
     
-    let geometry: AnyGeoJSON?
-    let properties: Any?
+    public let geometry: GeoJSON?
+    public let properties: Any?
     
     public enum CodingKeys : CodingKey {
         case geometry, properties
@@ -23,7 +23,7 @@ public struct Feature: GeoJSON {
         
         
         let anyGeo = try container.decode(AnyGeoJSON.self, forKey: .geometry)
-        self.geometry = anyGeo
+        self.geometry = anyGeo.base
         if let tempDict = try? container.decode([String:Any].self , forKey: .properties) {
           self.properties = tempDict
         } else {

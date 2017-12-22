@@ -10,5 +10,5 @@ import Foundation
 
 public struct Point: GeoJSON {
     public static var type = GeoJSONType.point
-    let coordinates: Position
+    public let coordinates: Position
 }
