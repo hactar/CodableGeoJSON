@@ -13,6 +13,12 @@ public struct Position: Codable {
     public let longitude: Float
     public let altitude: Float?
     
+    public init(latitude: Float, longitude: Float, altitude: Float?) {
+        self.latitude = latitude
+        self.longitude = longitude
+        self.altitude = altitude
+    }
+    
     
     private enum CodingKeys : CodingKey {
         case coordinates

@@ -8,7 +8,7 @@ public enum GeoJSONType : String, Decodable {
     // values of the cases. If you want the decoding to be reliant on case
     // position rather than name, then you can change to enum TagType : Int.
     // (the advantage of the String rawValue is that the JSON is more readable)
-    case featureCollection = "FeatureCollection", feature = "Feature", point = "Point"
+    case featureCollection = "FeatureCollection", feature = "Feature", point = "Point", polygon = "Polygon"
     
     // to be implemented: LineString, MultiPoint, Polygon, MultiLineString, MultiPolygon, GeometryCollection
     
@@ -20,6 +20,8 @@ public enum GeoJSONType : String, Decodable {
             return Feature.self
         case .point:
             return Point.self
+        case .polygon:
+            return Polygon.self
         }
     }
 }

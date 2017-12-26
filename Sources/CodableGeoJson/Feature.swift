@@ -11,15 +11,18 @@ public struct Feature: GeoJSON {
     public static var type = GeoJSONType.feature
     
     public let geometry: GeoJSON?
+    public let id: String?
     public let properties: Any?
     
     public enum CodingKeys : CodingKey {
-        case geometry, properties
+        case geometry, properties, id
     }
     
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.id  = try? container.decode(String.self, forKey: .id)
         
         
         let anyGeo = try container.decode(AnyGeoJSON.self, forKey: .geometry)
