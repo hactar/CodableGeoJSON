@@ -35,6 +35,28 @@ public struct MultiPolygon: GeoJSON {
     public static var type = GeoJSONType.multiPolygon
     /// Array of array of positions. The first subArray is the outer ring, any other arrays are cut outs.
     public let coordinates: [[[Position]]]
-    
+}
 
+public struct LineString: GeoJSON {
+    public static var type = GeoJSONType.lineString
+    /// Array of array of positions. The first subArray is the outer ring, any other arrays are cut outs.
+    public let coordinates: [Position]
+    
+    public func centerOfGeometry() -> Position {
+        var latitude: Float = 0.0
+        var longitude: Float = 0.0
+        self.coordinates.forEach { (position) in
+            latitude = latitude + position.latitude
+            longitude = longitude + position.longitude
+        }
+        let numObjects =  Float(self.coordinates.count)
+        return Position(latitude: latitude / numObjects, longitude: longitude / numObjects, altitude: nil)
+        
+    }
+}
+
+public struct MultiLineString: GeoJSON {
+    public static var type = GeoJSONType.multiLineString
+    /// Array of array of positions. The first subArray is the outer ring, any other arrays are cut outs.
+    public let coordinates: [[Position]]
 }
