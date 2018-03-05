@@ -15,6 +15,7 @@ public struct Point: GeoJSON {
 
 public struct Polygon: GeoJSON {
     public static var type = GeoJSONType.polygon
+    /// Array of array of positions. The first subArray is the outer ring, any other arrays are cut outs.
     public let coordinates: [[Position]]
     
     public func centerOfGeometry() -> Position {
@@ -28,4 +29,12 @@ public struct Polygon: GeoJSON {
         return Position(latitude: latitude / numObjects, longitude: longitude / numObjects, altitude: nil)
         
     }
+}
+
+public struct MultiPolygon: GeoJSON {
+    public static var type = GeoJSONType.multiPolygon
+    /// Array of array of positions. The first subArray is the outer ring, any other arrays are cut outs.
+    public let coordinates: [[[Position]]]
+    
+
 }

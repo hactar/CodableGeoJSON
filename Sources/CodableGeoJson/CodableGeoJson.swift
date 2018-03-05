@@ -2,13 +2,13 @@ import Foundation
 
 
 
-public enum GeoJSONType : String, Decodable {
+public enum GeoJSONType : String, Codable {
     
     // be careful not to rename these – the encoding/decoding relies on the string
     // values of the cases. If you want the decoding to be reliant on case
     // position rather than name, then you can change to enum TagType : Int.
     // (the advantage of the String rawValue is that the JSON is more readable)
-    case featureCollection = "FeatureCollection", feature = "Feature", point = "Point", polygon = "Polygon"
+    case featureCollection = "FeatureCollection", feature = "Feature", point = "Point", polygon = "Polygon", multiPolygon = "MultiPolygon"
     
     // to be implemented: LineString, MultiPoint, Polygon, MultiLineString, MultiPolygon, GeometryCollection
     
@@ -22,21 +22,23 @@ public enum GeoJSONType : String, Decodable {
             return Point.self
         case .polygon:
             return Polygon.self
+        case .multiPolygon:
+            return MultiPolygon.self
         }
     }
 }
 
 
-public protocol GeoJSON: Decodable {
-    static var type: GeoJSONType {
+public protocol GeoJSON: Codable {
+     static var type: GeoJSONType {
         get
     }
 }
 
 
-public struct AnyGeoJSON : Decodable {
+public struct AnyGeoJSON : Codable {
     
-    var base: GeoJSON
+    public var base: GeoJSON
     
     public init(_ base: GeoJSON) {
         self.base = base
@@ -53,14 +55,14 @@ public struct AnyGeoJSON : Decodable {
         self.base = try type.metatype.init(from: decoder)
     }
     
-    /*
+    
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encode(type(of: base).type, forKey: .type)
         try base.encode(to: encoder)
     }
-    */
+    
 }
 
 

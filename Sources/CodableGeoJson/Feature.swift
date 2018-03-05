@@ -39,26 +39,20 @@ public struct Feature: GeoJSON {
         }
         
     }
-    /*
+    
      public func encode(to encoder: Encoder) throws {
-     if propertiesArray != nil && properties != nil {
-     throw EncodingError.invalidValue(propertiesArray as Any, EncodingError.Context(codingPath: encoder.codingPath, debugDescription: "Can't set properties and propertiesArray at the same time") )
-     }
+
      var container = encoder.container(keyedBy: CodingKeys.self)
      
      if let geometry = self.geometry {
-     try container.encode(geometry, forKey: .geometry)
+        
+        let anyGeo = AnyGeoJSON.init(geometry)
+        try container.encode(anyGeo, forKey: .geometry)
      }
-     
-     if properties != nil {
-     try container.encode(properties, forKey: .properties)
-     }
-     if propertiesArray != nil {
-     try container.encode(propertiesArray, forKey: .properties)
-     }
+ 
      
      }
-     */
+    
     
     
     
