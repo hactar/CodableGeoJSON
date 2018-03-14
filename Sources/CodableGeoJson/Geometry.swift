@@ -29,11 +29,15 @@ public struct Polygon: GeoJSON {
         return Position(latitude: latitude / numObjects, longitude: longitude / numObjects, altitude: nil)
         
     }
+    
+    public init(coordinates: [[Position]]) {
+        self.coordinates = coordinates
+    }
 }
 
 public struct MultiPolygon: GeoJSON {
     public static var type = GeoJSONType.multiPolygon
-    /// Array of array of positions. The first subArray is the outer ring, any other arrays are cut outs.
+    /// Array of array of array of positions. The first subArray  the array of polygons.
     public let coordinates: [[[Position]]]
 }
 
@@ -52,6 +56,10 @@ public struct LineString: GeoJSON {
         let numObjects =  Float(self.coordinates.count)
         return Position(latitude: latitude / numObjects, longitude: longitude / numObjects, altitude: nil)
         
+    }
+    
+    public init(coordinates: [Position]) {
+        self.coordinates = coordinates
     }
 }
 
