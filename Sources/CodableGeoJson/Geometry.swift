@@ -11,6 +11,10 @@ import Foundation
 public struct Point: GeoJSON {
     public static var type = GeoJSONType.point
     public let coordinates: Position
+    
+    public init(coordinates: Position) {
+        self.coordinates = coordinates
+    }
 }
 
 public struct Polygon: GeoJSON {
