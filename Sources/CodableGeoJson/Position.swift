@@ -30,7 +30,7 @@ public struct Position: Codable {
         let arrayOfFloats = try container.decode([Float].self)
         
         guard arrayOfFloats.count > 1 else {
-            throw DecodingError.valueNotFound(Float.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "The Numbers are wrong!"))
+            throw DecodingError.valueNotFound(Float.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Incorrect number of values in position array"))
         }
         
         longitude = arrayOfFloats[0]
@@ -51,9 +51,9 @@ public struct Position: Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         
-        var tempArray = [longitude, latitude]
+        var tempArray = [Decimal(string: longitude.description)!, Decimal(string: latitude.description)!]
         if altitude != nil {
-            tempArray.append(altitude!)
+            tempArray.append(Decimal(string: altitude!.description)!)
         }
         try container.encode(tempArray)
     }
