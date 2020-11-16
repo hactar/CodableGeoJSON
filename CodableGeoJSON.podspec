@@ -28,13 +28,13 @@ Pure Swift codable GeoJSON.
   s.source           = { :git => 'https://github.com/hactar/CodableGeoJSON.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '13.0'
 
-  s.source_files = 'Sources/CodableGeoJSON/*'
-  s.swift_version = '4.0'
+  s.source_files = 'Sources/CodableGeoJson/*'
+  s.swift_version = '5.3'
   
   # s.resource_bundles = {
-  #   'CodableGeoJSON' => ['CodableGeoJSON/Assets/*.png']
+  #   'CodableGeoJSON' => ['CodableGeoJson/Assets/*.png']
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
