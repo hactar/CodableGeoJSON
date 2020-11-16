@@ -30,7 +30,7 @@ Pure Swift codable GeoJSON.
 
   s.ios.deployment_target = '13.0'
 
-  s.source_files = 'Sources/CodableGeoJson/*'
+  s.source_files = 'Sources/CodableGeoJSON/*'
   s.swift_version = '5.3'
   
   # s.resource_bundles = {
